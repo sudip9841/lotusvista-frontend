@@ -1,0 +1,32 @@
+.cover-container{
+    padding: 50px 0px;
+    align-items: end;
+    &-content{
+        .quote{
+            font-family: 'Open Sans', sans-serif;
+            font-size: 34px;
+            font-weight: 500;
+            line-height: 45px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #706A66;
+        }
+        .location{
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 27px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #706A66;
+        }
+    }
+    
+    &-image{
+        img{
+        height: 300px;
+        width: 100%;
+        object-fit: none;
+        }
+    }
+}

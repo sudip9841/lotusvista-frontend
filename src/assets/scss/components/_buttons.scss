@@ -1,0 +1,19 @@
+.primary-btn{
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 20px;
+    gap: 5px;
+    background-color: #B23C01;
+    color: #ffffff;
+
+    &-icon{
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+    }
+}
+
+.primary-btn:hover{
+    background-color: #a33701;
+}

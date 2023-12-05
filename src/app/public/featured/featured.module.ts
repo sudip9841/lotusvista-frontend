@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FeaturedRoutingModule } from './featured-routing.module';
 import { FeaturedComponent } from './featured/featured.component';
+import { MainHeaderModule } from 'src/shared/templates/main-header/main-header.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { FeaturedComponent } from './featured/featured.component';
   ],
   imports: [
     CommonModule,
-    FeaturedRoutingModule
+    FeaturedRoutingModule,
+    MainHeaderModule
   ]
 })
 export class FeaturedModule { }
