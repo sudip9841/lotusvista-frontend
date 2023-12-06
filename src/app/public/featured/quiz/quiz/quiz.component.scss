@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap');
+
+.quiz__container {
+    width: 66%;
+    margin: auto;
+}
+.primary-color {
+    color: #DF4B01;
+}
+.quiz__title {
+    font-family: 'Kalam', cursive;
+    font-size: 42px;
+}
+.quiz__ques {
+    font-family: 'Kalam', cursive;
+    font-size: 22px;
+}
+.quiz__option {
+    border: 1px solid #FEAF8F;
+    border-radius: 10px;
+    font-family: 'Kalam', cursive;
+}
+.submit__button {
+    border: 1px solid #DF4B01;
+    background-color: #DF4B01;
+    color: #fff;
+    &:hover {
+        color: #DF4B01;
+        background-color: #fff;
+    }
+}
+.pointer {
+    cursor: pointer;
+}

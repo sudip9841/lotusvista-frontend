@@ -25,10 +25,12 @@
     color: #FEAF8F;
 }
 .login__btn {
-    color: #FEAF8F;
+    color: #fff;
+    background-color: #DF4B01;
     &:hover {
-        color: #fff;
-        background-color: #DF4B01;
+        border: 1px solid #FEAF8F;
+        color: #DF4B01;
+        background-color: #fff;
     }
 }
 .login__link {
