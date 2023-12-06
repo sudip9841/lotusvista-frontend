@@ -22,6 +22,18 @@ const routes: Routes = [
         loadChildren:()=>import('./article/article.module').then(m=>m.ArticleModule)
       },
       {
+        path:'contact',
+        loadChildren:()=>import('./contact-us/contact-us.module').then(m=>m.ContactUsModule)
+      },
+      {
+        path:'about',
+        loadChildren:()=>import('./about-us/about-us.module').then(m=>m.AboutUsModule)
+      },
+      {
+        path:'quiz',
+        loadChildren:()=>import('./quiz/quiz.module').then(m=>m.QuizModule)
+      },
+      {
         path:'**',
         component:HomeComponent
       }
