@@ -37,64 +37,25 @@
 
 <div class="news-section-container mt-5 mb-2">
     <div class="news-section-container-title">
-        <p>Browse Our Latest News</p>
+        <p>Browse Our Latest Articles</p>
     </div>
 
     <div class="new-section-container-cards">
-        <div class="card" style="width: 20rem;">
-            <div class="p-2">
-                <img src="assets/images/news-image-1.png" class="card-img-top" alt="...">
+        <ng-container *ngFor="let newsSection of newsSectionDataList">
+            <div [routerLink]="['/featured/article/details',newsSection?.id]" class="card" style="width: 20rem;">
+                <div class="p-2">
+                    <img [src]="newsSection?.imageUrl" class="card-img-top" alt="news image">
+                </div>
+                <div class="hash-tag-section">
+                    <ng-container *ngFor="let hashTag of newsSection?.hashTags">
+                        <button class="hashtag-btn">{{hashTag}}</button>
+                    </ng-container>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{newsSection?.title}}</p>
+                </div>
             </div>
-            <div class="hash-tag-section">
-                <button class="hashtag-btn">JUN 25, 2023</button>
-                <button class="hashtag-btn">Health</button>
-                <button class="hashtag-btn">Mental</button>
-            </div>
-            <div class="card-body">
-              <p class="card-text">The Power of Self-Care: Nurturing Your Mental Health In The Age of AI Revolution</p>
-            </div>
-        </div>
-
-        <div class="card" style="width: 20rem;">
-            <div class="p-2">
-                <img src="assets/images/news-image-2.png" class="card-img-top" alt="...">
-            </div>
-            <div class="hash-tag-section">
-                <button class="hashtag-btn">JUN 25, 2023</button>
-                <button class="hashtag-btn">Health</button>
-                <button class="hashtag-btn">Mental</button>
-            </div>
-            <div class="card-body">
-              <p class="card-text">The Power of Self-Care: Nurturing Your Mental Health In The Age of AI Revolution</p>
-            </div>
-        </div>
-
-        <div class="card" style="width: 20rem;">
-            <div class="p-2">
-                <img src="assets/images/news-image-3.png" class="card-img-top" alt="...">
-            </div>
-            <div class="hash-tag-section">
-                <button class="hashtag-btn">JUN 25, 2023</button>
-                <button class="hashtag-btn">Health</button>
-                <button class="hashtag-btn">Mental</button>
-            </div>
-            <div class="card-body">
-              <p class="card-text">The Power of Self-Care: Nurturing Your Mental Health In The Age of AI Revolution</p>
-            </div>
-        </div>
-
-        <div class="card" style="width: 20rem;">
-            <div class="p-2">
-                <img src="assets/images/news-image-4.png" class="card-img-top" alt="...">
-            </div>
-            <div class="hash-tag-section">
-                <button class="hashtag-btn">JUN 25, 2023</button>
-                <button class="hashtag-btn">Health</button>
-                <button class="hashtag-btn">Mental</button>
-            </div>
-            <div class="card-body">
-              <p class="card-text">The Power of Self-Care: Nurturing Your Mental Health In The Age of AI Revolution</p>
-            </div>
-        </div>
+        </ng-container>
+        
     </div>
 </div>
