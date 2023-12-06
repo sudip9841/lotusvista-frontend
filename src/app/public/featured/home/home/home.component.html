@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<div class="aboutus-container mt-4">
+<div class="aboutus-container mt-4 mb-2">
     <div class="aboutus-container-header">
         <p>Who are we, you say?</p>
         <div class="header-underline"></div>
@@ -31,5 +31,31 @@
         <button class="primary-btn primary-btn-icon">Quiz <i class="fa-solid fa-arrow-right-long"></i></button>
         <button class="primary-btn primary-btn-icon">Book appointment <i class="fa-solid fa-arrow-right-long"></i></button>
 
+    </div>
+</div>
+
+
+<div class="news-section-container mt-5 mb-2">
+    <div class="news-section-container-title">
+        <p>Browse Our Latest Articles</p>
+    </div>
+
+    <div class="new-section-container-cards">
+        <ng-container *ngFor="let newsSection of newsSectionDataList">
+            <div [routerLink]="['/featured/article/details',newsSection?.id]" class="card" style="width: 20rem;">
+                <div class="p-2">
+                    <img [src]="newsSection?.imageUrl" class="card-img-top" alt="news image">
+                </div>
+                <div class="hash-tag-section">
+                    <ng-container *ngFor="let hashTag of newsSection?.hashTags">
+                        <button class="hashtag-btn">{{hashTag}}</button>
+                    </ng-container>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{newsSection?.title}}</p>
+                </div>
+            </div>
+        </ng-container>
+        
     </div>
 </div>

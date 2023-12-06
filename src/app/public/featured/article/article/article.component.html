@@ -1,0 +1,23 @@
+<div class="px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <ng-container *ngFor="let article of articleList">
+                <!-- Post preview-->
+                <div class="post-preview">
+                    <a [routerLink]="['/featured/article/details',article?.id]">
+                        <h2 class="post-title">{{article?.title}}</h2>
+                        <h3 class="post-subtitle">{{article?.subTitle}}</h3>
+                    </a>
+
+                    <div class="d-flex gap-3">
+                        <ng-container *ngFor="let hashTag of article?.hashTags">
+                            <button class="hashtag-btn-lg">{{hashTag}}</button>
+                        </ng-container>
+                    </div>
+                </div>
+                <!-- Divider-->
+                <hr class="my-4" />
+            </ng-container>
+        </div>
+    </div>
+</div>
