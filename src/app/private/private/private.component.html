@@ -1,1 +1,32 @@
-<p>private works!</p>
+
+<div id="wrapper" [ngClass]="{'toggled': isToggled}">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" [style.marginLeft]="isIE11 ? (isToggled ? '-268px' : '-250px') : null">
+        <ul class="sidebar-nav">
+            <li>
+                <a [routerLinkActive]="['active-nav']" [routerLink]="['/user/dashboard']">Dashboard</a>
+            </li>
+            <li>
+                <a [routerLinkActive]="['active-nav']" [routerLink]="['/user/message']">Message</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper my-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <button id="menu-toggle" class="btn btn-secondary navbar-toggler" (click)="toggleSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="d-flex justify-content-between align-items-center mx-5">
+                <h6 class="mx-5">LotusVista Healthcare</h6>
+                <button class="btn btn-danger btn-sm">Logout</button>
+            </div>
+        </div>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>
