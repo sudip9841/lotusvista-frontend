@@ -8,6 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SharedModule } from 'src/shared/modules/shared/shared.module';
 
 
+
 @NgModule({
   declarations: [
     AuthComponent,
@@ -17,7 +18,7 @@ import { SharedModule } from 'src/shared/modules/shared/shared.module';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    SharedModule,
+    SharedModule
   ]
 })
 export class AuthModule { }
