@@ -5,7 +5,22 @@ import { PrivateComponent } from './private/private.component';
 const routes: Routes = [
   {
     path:'',
-    component:PrivateComponent
+    component:PrivateComponent,
+    children:[
+      {
+        path:'',
+        redirectTo:'dashboard',
+        pathMatch:'full'
+      },
+      {
+        path:'dashboard',
+        loadChildren:()=>import('./dashboard/dashboard.module').then(m=>m.DashboardModule)
+      },
+      {
+        path:'message',
+        loadChildren:()=>import('./message/message.module').then(m=>m.MessageModule)
+      }
+    ]
   }
 ];
 

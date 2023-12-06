@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivateComponent implements OnInit {
 
-  constructor() { }
+  isToggled = false;
+  isIE11 = !!navigator.userAgent.match(/Trident.*rv\:11\./);
 
+  
+  constructor() { }
+  
   ngOnInit(): void {
   }
-
+  
+  toggleSidebar(): void {
+    this.isToggled = !this.isToggled;
+  }
 }
