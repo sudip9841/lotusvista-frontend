@@ -16,6 +16,66 @@ export class AuthService {
     private http: HttpClient,
     private angularFireAuth:AngularFireAuth
   ) { }
+  
+  private accessTokenKey = 'accessToken';
+  private refreshTokenKey = 'refreshToken';
+  private uIdKey = 'uId';
+  private expirationTimeKey = 'expirationTime';
+
+  private accessToken: string | null = null;
+  private refreshToken: string | null = null;
+  private uId: string | null = null;
+  private expirationTime: number | null = null;
+
+  setTokens(accessToken: string, refreshToken: string): void {
+    this.accessToken = accessToken;
+    this.refreshToken = refreshToken;
+    localStorage.setItem(this.accessTokenKey, accessToken);
+    localStorage.setItem(this.refreshTokenKey, refreshToken);
+  }
+
+  setUserInfo(uId: string): void {
+    this.uId = uId;
+    localStorage.setItem(this.uIdKey, uId);
+  }
+
+  setExpirationTime(expirationTime: number): void {
+    this.expirationTime = expirationTime;
+    localStorage.setItem(this.expirationTimeKey, expirationTime.toString());
+  }
+
+  getAccessToken(): string | null {
+    return this.accessToken || localStorage.getItem(this.accessTokenKey);
+  }
+
+  getRefreshToken(): string | null {
+    return this.refreshToken || localStorage.getItem(this.refreshTokenKey);
+  }
+
+  getUId(): string | null {
+    return this.uId || localStorage.getItem(this.uIdKey);
+  }
+
+  getExpirationTime(): number | null {
+    return this.expirationTime || parseInt(localStorage.getItem(this.expirationTimeKey) || '0', 10);
+  }
+
+  isLoggedIn(): boolean {
+    // You can customize this logic based on your requirements
+    return !!this.getAccessToken() && !!this.getUId() && !!this.getExpirationTime();
+  }
+
+  clearTokens(): void {
+    this.accessToken = null;
+    this.refreshToken = null;
+    this.uId = null;
+    this.expirationTime = null;
+    localStorage.removeItem(this.accessTokenKey);
+    localStorage.removeItem(this.refreshTokenKey);
+    localStorage.removeItem(this.uIdKey);
+    localStorage.removeItem(this.expirationTimeKey);
+  }
+
 
   login(login: LoginModel): Observable<any> {
     return from(this.angularFireAuth.signInWithEmailAndPassword(login.email,login.password));
@@ -23,25 +83,6 @@ export class AuthService {
 
   signup(signup: SignupModel): Observable<any> {
     return from(this.angularFireAuth.createUserWithEmailAndPassword(signup.email,signup.password));
-  }
-
-  checkLogin(): boolean {
-    const token = this.getToken();
-    return !!token;
-  }
-
-  getToken(): TokenInfo | undefined {
-    const token = localStorage.getItem(localStorageConstant.token);
-    if (token) return JSON.parse(token);
-    else return null;
-  }
-
-  storeToken(login: TokenInfo): void {
-    localStorage.setItem(localStorageConstant.token, JSON.stringify(login));
-  }
-
-  removeToken():void{
-    localStorage.removeItem(localStorageConstant.token);
   }
 
 }

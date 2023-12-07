@@ -8,6 +8,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpServiceInterceptor} from 'src/app/public/auth/interceptors/http-service.interceptor';
 @NgModule({
   declarations: [
     AppComponent
@@ -31,9 +34,16 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
       measurementId: "G-7HR2LENK37"
      
     }),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:HttpServiceInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

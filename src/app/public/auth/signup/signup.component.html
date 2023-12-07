@@ -28,17 +28,26 @@
                   <small class="text-danger">Password is required.</small>
                 </ng-container>
             </div>
+
+            <!-- Password input 2 -->
+            <div class="form-floating my-4">
+                <input type="password" class="form-control" placeholder="Confirm Password" formControlName="password2">
+                <label for="floatingPassword">Confirm Password</label>
+                <ng-container *ngIf="checkFormControlInvalid('password2', signupForm)">
+                  <small class="text-danger">Confirm Password is required.</small>
+                </ng-container>
+            </div>
   
             <div class="d-flex justify-content-between align-items-center">
               <!-- Checkbox -->
-              <div class="form-check mb-0">
+              <!-- <div class="form-check mb-0">
                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
                 <label class="form-check-label pointer" for="form2Example3">
                     <span class="fw-lighter fs-6">
                         I agree to Terms, Privacy Policy and Cookies Policy.
                     </span>
                 </label>
-              </div>
+              </div> -->
               <!-- <a class="btn-primary-color login__link">Forgot password?</a> -->
             </div>
   

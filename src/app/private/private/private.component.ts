@@ -24,7 +24,7 @@ export class PrivateComponent implements OnInit {
   }
 
   logoutClicked():void{
-    this.authService.removeToken();
+    this.authService.clearTokens();
     this.router.navigate(['/'])
   }
 }

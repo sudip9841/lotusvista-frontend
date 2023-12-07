@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/public/auth/service/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import {LoginModel} from '../interface/auth.types';
 import { FirebaseErrorHandleService } from 'src/shared/services/firebase-error-handle.service';
+import { SpinnerService } from 'src/shared/services/spinner.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +22,8 @@ export class LoginComponent implements OnInit {
     private readonly authService: AuthService,
     private readonly formService: FormService,
     private readonly toastrService: ToastrService,
-    private readonly firebaseErrorHandleService: FirebaseErrorHandleService
+    private readonly firebaseErrorHandleService: FirebaseErrorHandleService,
+    private readonly spinner:SpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -36,33 +39,29 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     if (this.loginForm.invalid) return this.formService.validateAllFormFields(this.loginForm);
-
     const {email, password} = this.loginForm.value;
-
     const requestBody:LoginModel = {
       email:email,
       password:password
     }
-
-    // if(email=='bhumika' && password=='bhumika'){
-    //   const dummyToken:TokenInfo = {
-    //     access_token:'abcd',
-    //     expires_in:10000,
-    //     refresh_token:'abcd',
-    //     token_type:'Bearer'
-    //   }
-    //   this.authService.storeToken(dummyToken);
-    //   this.router.navigate(['/user'])
-    // }else{
-    //   this.toastrService.error("Invalid email or Password.")
-    // }
+    this.spinner.showSpinner();
     this.authService.login(requestBody).subscribe({
       next: (response) => {
-        this.toastrService.success('Login Successful!')
-        this.router.navigate(['user']);
+      console.log(response);
+      const { uid, stsTokenManager } = response.user._delegate;
+      const { accessToken, refreshToken, expirationTime } = stsTokenManager;
+      this.authService.setTokens(accessToken,refreshToken);
+      this.authService.setUserInfo(uid);
+      this.authService.setExpirationTime(expirationTime);
+      this.toastrService.success("Login successful")
+      this.router.navigate(['user']);
       },
       error:(error)=>{
         this.firebaseErrorHandleService.handleFirebaseError(error)
+        this.spinner.hideSpinner();
+      },
+      complete:()=>{
+        this.spinner.hideSpinner();
       }
     });
   }
