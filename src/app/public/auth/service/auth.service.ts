@@ -39,4 +39,8 @@ export class AuthService {
     localStorage.setItem(localStorageConstant.token, JSON.stringify(login));
   }
 
+  removeToken():void{
+    localStorage.removeItem(localStorageConstant.token);
+  }
+
 }

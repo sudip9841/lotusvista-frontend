@@ -13,10 +13,10 @@
   
             <!-- Email input -->
             <div class="form-floating my-4">
-                <input type="email" class="form-control" placeholder="name@example.com" formControlName="email">
-                <label for="floatingInput">Email address</label>
-                <ng-container *ngIf="checkFormControlInvalid('email', loginForm)">
-                  <small class="text-danger">Email is required.</small>
+                <input type="email" class="form-control" placeholder="name@example.com" formControlName="username">
+                <label for="floatingInput">Username</label>
+                <ng-container *ngIf="checkFormControlInvalid('username', loginForm)">
+                  <small class="text-danger">Username is required.</small>
                 </ng-container>
             </div>
   
@@ -24,7 +24,7 @@
             <div class="form-floating my-4">
                 <input type="password" class="form-control" placeholder="Password" formControlName="password">
                 <label for="floatingPassword">Password</label>
-                <ng-container *ngIf="checkFormControlInvalid('email', loginForm)">
+                <ng-container *ngIf="checkFormControlInvalid('password', loginForm)">
                   <small class="text-danger">Password is required.</small>
                 </ng-container>
             </div>

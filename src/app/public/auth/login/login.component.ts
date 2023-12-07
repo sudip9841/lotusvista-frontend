@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormService } from 'src/shared/services/form.service';
 import { AuthService } from 'src/app/public/auth/service/auth.service';
 import { ToastrService } from 'ngx-toastr';
-
+import {TokenInfo} from '../interface/auth.types';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,19 +27,33 @@ export class LoginComponent implements OnInit {
 
   buildForm(): void {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
 
   login(): void {
     if (this.loginForm.invalid) return this.formService.validateAllFormFields(this.loginForm);
-    this.authService.login(this.loginForm.value).subscribe({
-      next: (response) => {
-        this.toastrService.success('Login Successful!')
-        this.router.navigate(['user']);
+
+    const {username, password} = this.loginForm.value;
+    if(username=='bhumika' && password=='bhumika'){
+      const dummyToken:TokenInfo = {
+        access_token:'abcd',
+        expires_in:10000,
+        refresh_token:'abcd',
+        token_type:'Bearer'
       }
-    });
+      this.authService.storeToken(dummyToken);
+      this.router.navigate(['/user'])
+    }else{
+      this.toastrService.error("Invalid Username or Password.")
+    }
+    // this.authService.login(this.loginForm.value).subscribe({
+    //   next: (response) => {
+    //     this.toastrService.success('Login Successful!')
+    //     this.router.navigate(['user']);
+    //   }
+    // });
   }
 
   checkFormControlInvalid(formControlName: string, formGroup: FormGroup): boolean {
