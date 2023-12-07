@@ -20,20 +20,11 @@
                 </ng-container>
             </div>
 
-            <!-- Username input -->
-            <div class="form-floating my-4">
-                <input type="text" class="form-control" placeholder="Username" formControlName="username">
-                <label for="floatingInput">Username</label>
-                <ng-container *ngIf="checkFormControlInvalid('email', signupForm)">
-                  <small class="text-danger">Username is required.</small>
-                </ng-container>
-            </div>
-  
             <!-- Password input -->
             <div class="form-floating my-4">
                 <input type="password" class="form-control" placeholder="Password" formControlName="password">
                 <label for="floatingPassword">Password</label>
-                <ng-container *ngIf="checkFormControlInvalid('email', signupForm)">
+                <ng-container *ngIf="checkFormControlInvalid('password', signupForm)">
                   <small class="text-danger">Password is required.</small>
                 </ng-container>
             </div>

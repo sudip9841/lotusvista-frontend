@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginModel, SignupModel, TokenInfo } from '../interface/auth.types';
-import { Observable } from 'rxjs';
-
+import { Observable, from } from 'rxjs';
+import {AngularFireAuth} from '@angular/fire/compat/auth';
 export const localStorageConstant = {
   token: 'auth_token'
 }
@@ -14,14 +14,15 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private angularFireAuth:AngularFireAuth
   ) { }
 
   login(login: LoginModel): Observable<any> {
-    return this.http.post('url', login);
+    return from(this.angularFireAuth.signInWithEmailAndPassword(login.email,login.password));
   }
 
   signup(signup: SignupModel): Observable<any> {
-    return this.http.post('url', signup);
+    return from(this.angularFireAuth.createUserWithEmailAndPassword(signup.email,signup.password));
   }
 
   checkLogin(): boolean {

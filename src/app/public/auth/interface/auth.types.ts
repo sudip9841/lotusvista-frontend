@@ -10,8 +10,6 @@ export interface LoginModel {
     password: string;
 }
 
-export interface SignupModel {
-    email: string;
-    username: string;
-    password: string;
+export interface SignupModel extends LoginModel{
+ 
 }

@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { SharedModule } from 'src/shared/modules/shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +20,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
-    })
+    }),
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyD-UyBz97AftappzjQXGIT6s99iIb8zCk8",
+      authDomain: "londonvista-546c1.firebaseapp.com",
+      projectId: "londonvista-546c1",
+      storageBucket: "londonvista-546c1.appspot.com",
+      messagingSenderId: "910664312194",
+      appId: "1:910664312194:web:aa32ae7ee8c0ad530a9b9b",
+      measurementId: "G-7HR2LENK37"
+     
+    }),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,10 +13,10 @@
   
             <!-- Email input -->
             <div class="form-floating my-4">
-                <input type="email" class="form-control" placeholder="name@example.com" formControlName="username">
-                <label for="floatingInput">Username</label>
-                <ng-container *ngIf="checkFormControlInvalid('username', loginForm)">
-                  <small class="text-danger">Username is required.</small>
+                <input type="email" class="form-control" placeholder="name@example.com" formControlName="email">
+                <label for="floatingInput">Email</label>
+                <ng-container *ngIf="checkFormControlInvalid('email', loginForm)">
+                  <small class="text-danger">email is required.</small>
                 </ng-container>
             </div>
   
@@ -31,12 +31,12 @@
   
             <div class="d-flex justify-content-between align-items-center">
               <!-- Checkbox -->
-              <div class="form-check mb-0">
+              <!-- <div class="form-check mb-0">
                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
                 <label class="form-check-label pointer" for="form2Example3">
                   Remember me
                 </label>
-              </div>
+              </div> -->
               <a class="btn-primary-color login__link pointer">Forgot password?</a>
             </div>
   
