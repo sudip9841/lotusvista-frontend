@@ -37,3 +37,15 @@
     font-size: 5em;
     opacity: 0.2;
   }
+
+
+  .chart-container {
+    position: relative;
+    height: 400px; /* Set the desired height of the chart container */
+  }
+  
+  canvas {
+    height: 100% !important; /* Set the canvas height to 100% of its parent container */
+    width: 100% !important; /* Set the canvas width to 100% of its parent container */
+  }
+  

@@ -23,6 +23,14 @@ const routes: Routes = [
       {
         path:'contact',
         loadChildren:()=>import('./contact/contact.module').then(m=>m.ContactModule)
+      },
+      {
+        path:'schedule-appointment',
+        loadChildren:()=>import('./schedule-appointment/schedule-appointment.module').then(m=>m.ScheduleAppointmentModule)
+      },
+      {
+        path:'appointment-history',
+        loadChildren:()=>import('./appointment-history/appointment-history.module').then(m=>m.AppointmentHistoryModule)
       }
     ]
   }

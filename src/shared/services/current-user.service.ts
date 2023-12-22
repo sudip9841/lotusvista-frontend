@@ -54,6 +54,14 @@ export class CurrentUserService {
         url:'/user/dashboard'
       },
       {
+        name:'Appointment Schedule',
+        url:'schedule-appointment'
+      },
+      {
+        name:'Appointment History',
+        url:'/user/appointment-history'
+      },
+      {
         name:'messsage',
         url:'/user/message'
       },
@@ -66,7 +74,15 @@ export class CurrentUserService {
       {
         name:'Dashboard',
         url:'/user/dashboard'
-      }
+      },
+      {
+        name:'Appointment History',
+        url:'/user/appointment-history'
+      },
+      {
+        name:'messsage',
+        url:'/user/message'
+      },
     ]
 
     return menu;
