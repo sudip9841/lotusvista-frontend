@@ -6,6 +6,7 @@ import { ArticleComponent } from './article/article.component';
 import { ArticleDetatilsComponent } from './article-detatils/article-detatils.component';
 
 
+
 @NgModule({
   declarations: [
     ArticleComponent,
@@ -13,7 +14,8 @@ import { ArticleDetatilsComponent } from './article-detatils/article-detatils.co
   ],
   imports: [
     CommonModule,
-    ArticleRoutingModule
+    ArticleRoutingModule,
+    
   ]
 })
 export class ArticleModule { }

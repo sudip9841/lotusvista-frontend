@@ -1,9 +1,4 @@
 <div class="container d-flex justify-content-center align-items-center">
-  <!-- // SVG
-					from: https://www.freepik.com/free-vector/new-message-concept-landing-page_5777076.htm 
-  -------------------------------------------------------------
-  -- Note: need to use inline svg to manipulate its components
-  ------------------------------------------------------------>
 
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 563" fill="none">
     <g id="Image">
@@ -763,7 +758,7 @@
   -------------------------------------------------------------
   ------------------------------------------------------------>
 
-  <form>
+  <form [formGroup]="contactForm" (ngSubmit)="submitContactForm()" >
     <h1 class="title text-center mb-4">Talk to Us</h1>
 
     <!-- Name -->
@@ -776,7 +771,11 @@
         id="formName"
         class="form-control form-control-lg thick"
         placeholder="Name"
+        formControlName="name"
       />
+      <span *ngIf="this.formService.checkFormControlInvalid('name',contactForm)">
+        <span class="text-danger">Name is required.</span>
+      </span>
     </div>
 
     <!-- E-mail -->
@@ -789,7 +788,16 @@
         id="formEmail"
         class="form-control form-control-lg thick"
         placeholder="E-mail"
+        formControlName="email"
       />
+      <span class="text-danger" *ngIf="this.formService.checkFormControlInvalid('email',contactForm)">
+        <span *ngIf="this.contactForm.get('email')?.errors?.['required']">
+          Email is required.
+        </span>
+        <span *ngIf="this.contactForm.get('email')?.errors?.['email']">
+          Email is invalid.
+        </span>
+      </span>
     </div>
 
     <!-- Message -->
@@ -799,7 +807,11 @@
         class="form-control form-control-lg"
         rows="7"
         placeholder="Message"
+        formControlName="message"
       ></textarea>
+      <span *ngIf="this.formService.checkFormControlInvalid('message',contactForm)">
+        <span class="text-danger">Message is required.</span>
+      </span>
     </div>
 
     <!-- Submit btn -->

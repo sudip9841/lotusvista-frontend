@@ -1,0 +1,23 @@
+<div class="p-3">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let message of contactMessage; let i = index;">
+              <tr>
+                <th scope="row">{{i+1}}</th>
+                <td>{{message?.name}}</td>
+                <td>{{message?.email}}</td>
+                <td>{{message?.message}}</td>
+              </tr>
+          </ng-container>
+
+        </tbody>
+      </table>
+</div>

@@ -47,7 +47,8 @@ export class SignupComponent implements OnInit {
     }
 
     this.spinner.showSpinner();
-    this.authService.signup(this.signupForm.value).subscribe({
+    const {email,password:pass} = this.signupForm.value;
+    this.authService.signup(email,pass,'user').subscribe({
       next: (response) => {
         this.toastrService.success('Signup Successful!')
         this.router.navigate(['auth/login']);

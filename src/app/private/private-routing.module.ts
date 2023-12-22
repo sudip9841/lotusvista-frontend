@@ -19,6 +19,10 @@ const routes: Routes = [
       {
         path:'message',
         loadChildren:()=>import('./message/message.module').then(m=>m.MessageModule)
+      },
+      {
+        path:'contact',
+        loadChildren:()=>import('./contact/contact.module').then(m=>m.ContactModule)
       }
     ]
   }

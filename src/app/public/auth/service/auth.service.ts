@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginModel, SignupModel, TokenInfo } from '../interface/auth.types';
-import { Observable, from } from 'rxjs';
+import { Observable, catchError, from, switchMap } from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 export const localStorageConstant = {
   token: 'auth_token'
 }
@@ -14,7 +15,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private angularFireAuth:AngularFireAuth
+    private angularFireAuth:AngularFireAuth,
+    private fireStore:AngularFirestore
   ) { }
   
   private accessTokenKey = 'accessToken';
@@ -81,8 +83,25 @@ export class AuthService {
     return from(this.angularFireAuth.signInWithEmailAndPassword(login.email,login.password));
   }
 
-  signup(signup: SignupModel): Observable<any> {
-    return from(this.angularFireAuth.createUserWithEmailAndPassword(signup.email,signup.password));
+  // signup(signup: SignupModel): Observable<any> {
+  //   return from(this.angularFireAuth.createUserWithEmailAndPassword(signup.email,signup.password));
+  // }
+
+  signup(email: string, password: string, role: string): Observable<void> {
+    return from(this.angularFireAuth.createUserWithEmailAndPassword(email, password)).pipe(
+      switchMap(userCredential => {
+        const user = userCredential.user;
+  
+        return from(this.fireStore.doc(`roles/${user.uid}`).set({
+          userId: user.uid,
+          role: role,
+        }));
+      }),
+      catchError(error => {
+        console.error('Error during signup:', error);
+        throw error;
+      })
+    );
   }
 
 }

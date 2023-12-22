@@ -11,6 +11,10 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {HttpServiceInterceptor} from 'src/app/public/auth/interceptors/http-service.interceptor';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore'; 
+import { getDatabase, provideDatabase } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
 @NgModule({
   declarations: [
     AppComponent
@@ -35,7 +39,8 @@ import {HttpServiceInterceptor} from 'src/app/public/auth/interceptors/http-serv
      
     }),
     AngularFireAuthModule,
-    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
+    AngularFirestoreModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
   ],
   providers: [
     {

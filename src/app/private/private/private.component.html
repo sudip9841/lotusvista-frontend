@@ -3,12 +3,12 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper" [style.marginLeft]="isIE11 ? (isToggled ? '-268px' : '-250px') : null">
         <ul class="sidebar-nav">
-            <li>
-                <a [routerLinkActive]="['active-nav']" [routerLink]="['/user/dashboard']">Dashboard</a>
-            </li>
-            <li>
-                <a [routerLinkActive]="['active-nav']" [routerLink]="['/user/message']">Message</a>
-            </li>
+            <ng-container *ngFor="let menu of menuList">
+                <li>
+                    <a [routerLinkActive]="['active-nav']" [routerLink]="[menu?.url]">{{menu?.name}}</a>
+                </li>
+            </ng-container>
+
         </ul>
     </div>
     <!-- /#sidebar-wrapper -->
